@@ -1,0 +1,20 @@
+name: Formatting Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Formatter (shfmt)
+        run: sudo apt-get install -y shfmt
+
+      - name: Format Scripts
+        run: shfmt -d setup_github_runner.sh auto_start_github_runners.sh
